@@ -15,14 +15,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Texto.SetActive(false);
-        Boton.SetActive(false); 
+        Boton.SetActive(false);
         activarCronometro = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(activarCronometro == true)
+        if (activarCronometro == true)
         {
             tiempoGM += Time.deltaTime;
             segundos = (int)(tiempoGM);
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
         Boton.SetActive(true);
         activarCronometro = false;
     }
-   public void Reiniciar()
+    public void Reiniciar()
     {
         puntuacionActual = 0;
         Jugador.SetActive(true);

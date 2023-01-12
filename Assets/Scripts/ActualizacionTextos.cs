@@ -9,7 +9,7 @@ public class ActualizacionTextos : MonoBehaviour
     [SerializeField] GameManager gameManager;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
