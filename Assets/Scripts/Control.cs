@@ -18,25 +18,6 @@ public class Control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        
-        if(horizontal > 0)
-        {
-            rigidbody.velocity = new Vector2(velocidad,rigidbody.velocity.y);
-            transform.localScale = new Vector2(4, 4);
-            animator.SetBool("Correr", true);
-        }
-        else if( horizontal < 0)
-        {
-            rigidbody.velocity = new Vector2(-velocidad, rigidbody.velocity.y);
-            transform.localScale = new Vector2(-4, 4);
-            animator.SetBool("Correr", true);
-        }
-        else
-        {
-            rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
-            animator.SetBool("Correr", false);
-        }
 
         if(Input.GetButtonDown("Jump") && ComprobarSuelo.estaEnSuelo)
         {
