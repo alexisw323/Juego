@@ -7,11 +7,11 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject Texto;
     [SerializeField] GameObject Boton;
-    [SerializeField] TMP_Text cronometro;
     [SerializeField] GameObject Jugador;
     [SerializeField] GameObject Enemigo;
     [SerializeField] bool activarCronometro;
-    float tiempo, segundos;
+    [SerializeField] int puntuacionActual;
+    public float tiempoGM, segundos;
     void Start()
     {
         Texto.SetActive(false);
@@ -24,9 +24,27 @@ public class GameManager : MonoBehaviour
     {
         if(activarCronometro == true)
         {
-            tiempo += Time.deltaTime;
-            segundos = (int)(tiempo);
-            cronometro.text = segundos.ToString();
+            tiempoGM += Time.deltaTime;
+            segundos = (int)(tiempoGM);
         }
+    }
+    public void Perder()
+    {
+        Jugador.SetActive(false);
+        Enemigo.SetActive(false);
+        Texto.SetActive(true);
+        Boton.SetActive(true);
+        activarCronometro = false;
+    }
+   public void Reiniciar()
+    {
+        puntuacionActual = 0;
+        Jugador.SetActive(true);
+        Enemigo.SetActive(true);
+        Texto.SetActive(false);
+        Boton.SetActive(false);
+        tiempoGM = 0;
+        activarCronometro = true;
+        //IniciarEnemigo();
     }
 }
