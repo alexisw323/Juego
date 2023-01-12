@@ -18,8 +18,7 @@ public class Control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        
+
         if(Input.GetButtonDown("Jump") && ComprobarSuelo.estaEnSuelo)
         {
             rigidbody.AddForce(Vector2.up* alturaSalto);
