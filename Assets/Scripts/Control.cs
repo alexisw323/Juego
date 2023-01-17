@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Control : MonoBehaviour
 {
-    [SerializeField] float velocidad, alturaSalto, alturaDobleSalto;
+    [SerializeField] float velocidad, alturaSalto;
     [SerializeField] Animator animator;
     [SerializeField] Rigidbody2D rigidbody;
-    [SerializeField] bool confirmarDobleSalto;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,26 +18,33 @@ public class Control : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetButtonDown("Jump") && ComprobarSuelo.estaEnSuelo)
+        if (Input.GetButtonDown("Jump") && ComprobarSuelo.estaEnSuelo)
         {
-            rigidbody.AddForce(Vector2.up* alturaSalto);
-            confirmarDobleSalto = true;
-        }
-        else if(Input.GetButtonDown("Jump") && !ComprobarSuelo.estaEnSuelo && confirmarDobleSalto)
-        {
-            rigidbody.velocity = Vector2.zero;
-            rigidbody.AddForce(Vector2.up * alturaDobleSalto);
-            confirmarDobleSalto = false;
+            rigidbody.AddForce(Vector2.up * alturaSalto);
         }
 
-        if(rigidbody.velocity.y >0.5f)
+        if (rigidbody.velocity.y > 0.5f)
         {
             animator.SetBool("Saltar", true);
         }
-        else if(rigidbody.velocity.y < -0.5f)
+        else if (rigidbody.velocity.y < -15)
         {
             animator.SetBool("Saltar", false);
 
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Enemigo")
+        {
+            GameManager.Instancia.Perder();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "Puntos")
+        {
+            GameManager.Instancia.ActualizarPuntos();
         }
     }
 }

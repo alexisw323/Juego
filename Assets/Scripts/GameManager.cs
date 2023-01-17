@@ -5,13 +5,26 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instancia;
     [SerializeField] GameObject Texto;
     [SerializeField] GameObject Boton;
     [SerializeField] GameObject Jugador;
     [SerializeField] GameObject Enemigo;
     [SerializeField] bool activarCronometro;
-    [SerializeField] int puntuacionActual;
+    [SerializeField] public int puntuacionActual, MejPunt;
     public float tiempoGM, segundos;
+    public void Awake()
+    {
+        if (Instancia == null)
+        {
+            Instancia = this; DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        MejPunt = PlayerPrefs.GetInt("MejPunt");
+    }
     void Start()
     {
         Texto.SetActive(false);
@@ -45,6 +58,16 @@ public class GameManager : MonoBehaviour
         Boton.SetActive(false);
         tiempoGM = 0;
         activarCronometro = true;
-        //IniciarEnemigo();
+        Enemigo.GetComponent<Enemigo>().IniciarEnemigo();
+    }
+    public void ActualizarPuntos()
+    {
+        puntuacionActual++;
+        if (puntuacionActual > MejPunt)
+        {
+            MejPunt = puntuacionActual;
+            PlayerPrefs.SetInt("MejPunt", MejPunt);
+        }
+
     }
 }

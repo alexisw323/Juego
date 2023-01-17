@@ -26,6 +26,7 @@ public class Enemigo : MonoBehaviour
         {
             gameObject.transform.position = posicionInicial;
             velocidad++;
+            GameManager.Instancia.ActualizarPuntos();
         }
     }
     public void IniciarEnemigo()

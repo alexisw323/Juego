@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ActualizacionTextos : MonoBehaviour
 {
-    [SerializeField] TMP_Text cronometro;
+    [SerializeField] TMP_Text cronometro, actpuntos, MejPun;
     [SerializeField] GameManager gameManager;
     void Start()
     {
@@ -16,5 +16,7 @@ public class ActualizacionTextos : MonoBehaviour
     void Update()
     {
         cronometro.text = gameManager.segundos.ToString();
+        actpuntos.text = gameManager.puntuacionActual.ToString();
+        MejPun.text = gameManager.MejPunt.ToString();
     }
 }
