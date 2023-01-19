@@ -7,6 +7,7 @@ public class Control : MonoBehaviour
     [SerializeField] float velocidad, alturaSalto;
     [SerializeField] Animator animator;
     [SerializeField] Rigidbody2D rigidbody;
+    [SerializeField] AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class Control : MonoBehaviour
         if (Input.GetButtonDown("Jump") && ComprobarSuelo.estaEnSuelo)
         {
             rigidbody.AddForce(Vector2.up * alturaSalto);
+            audioSource.Play();
         }
 
         if (rigidbody.velocity.y > 0.5f)

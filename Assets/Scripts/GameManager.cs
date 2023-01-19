@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject Enemigo;
     [SerializeField] bool activarCronometro;
     [SerializeField] public int puntuacionActual, MejPunt;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip[] sonidos;
     public float tiempoGM, segundos;
     public void Awake()
     {
@@ -30,6 +32,9 @@ public class GameManager : MonoBehaviour
         Texto.SetActive(false);
         Boton.SetActive(false);
         activarCronometro = true;
+        audioSource.clip = sonidos[0];
+        audioSource.Play();
+        audioSource.loop = true;
     }
 
     // Update is called once per frame
@@ -48,6 +53,9 @@ public class GameManager : MonoBehaviour
         Texto.SetActive(true);
         Boton.SetActive(true);
         activarCronometro = false;
+        audioSource.clip = sonidos[1];
+        audioSource.Play();
+        audioSource.loop = false;
     }
     public void Reiniciar()
     {
@@ -59,6 +67,9 @@ public class GameManager : MonoBehaviour
         tiempoGM = 0;
         activarCronometro = true;
         Enemigo.GetComponent<Enemigo>().IniciarEnemigo();
+        audioSource.clip = sonidos[0];
+        audioSource.Play();
+        audioSource.loop = true;
     }
     public void ActualizarPuntos()
     {
@@ -68,6 +79,5 @@ public class GameManager : MonoBehaviour
             MejPunt = puntuacionActual;
             PlayerPrefs.SetInt("MejPunt", MejPunt);
         }
-
     }
 }

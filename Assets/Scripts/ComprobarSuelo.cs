@@ -11,7 +11,6 @@ public class ComprobarSuelo : MonoBehaviour
     {      
         if (other.transform.tag == "Suelo")
         {
-            Debug.Log("Salta");
             estaEnSuelo = true;
         }           
     }
@@ -20,7 +19,6 @@ public class ComprobarSuelo : MonoBehaviour
     {       
         if (other.transform.tag == "Suelo")
         {
-            Debug.Log("Noooooooooo Salta");
             estaEnSuelo = false;
         }          
     }
